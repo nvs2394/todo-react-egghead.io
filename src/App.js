@@ -18,8 +18,15 @@ class App extends Component {
         "id": 3,
         "name": "Controladora Vuela Compania de Aviacion, S.A.B. de C.V.",
         "isComplete": true
-      }]
+      }],
+      currentTodo: ''
     }
+  }
+
+  handleInputChange = (event) =>{
+    this.setState({
+      currentTodo: event.target.value
+    })
   }
 
   render() {
@@ -31,7 +38,7 @@ class App extends Component {
         </div>
         <div className="Todo-App">
           <form>
-            <input type="text" />
+            <input type="text" value={this.state.currentTodo} onChange={this.handleInputChange}/>
           </form>
           <div className="Todo-List">
             <ul>
