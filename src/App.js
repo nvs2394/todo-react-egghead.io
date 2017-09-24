@@ -5,7 +5,8 @@ import './App.css';
 /**
  * Import component
  */
-import TodoForm from './components/todo/TodoForm'
+import TodoForm from './components/todo/TodoForm';
+import TodoList from './components/todo/TodoList';
 
 class App extends Component {
   constructor(){
@@ -46,18 +47,9 @@ class App extends Component {
             handleInputChange={this.handleInputChange}
             currentTodo={this.state.currentTodo}
           />
-          <div className="Todo-List">
-            <ul>
-              {
-                this.state.todos.map(todo=> 
-                  <li key={todo.id}>
-                    <input type="checkbox" defaultChecked={todo.isComplete}/>
-                    {todo.name}
-                  </li>
-                )
-              }
-            </ul>
-          </div>
+          <TodoList 
+            todos={this.state.todos}
+          />
         </div>
       </div>
     );
