@@ -3,6 +3,25 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      todos: [{
+        "id": 1,
+        "name": "TFS Financial Corporation",
+        "isComplete": false
+      }, {
+        "id": 2,
+        "name": "Fusion Telecommunications International, Inc.",
+        "isComplete": true
+      }, {
+        "id": 3,
+        "name": "Controladora Vuela Compania de Aviacion, S.A.B. de C.V.",
+        "isComplete": true
+      }]
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -16,9 +35,14 @@ class App extends Component {
           </form>
           <div className="Todo-List">
             <ul>
-              <li><input type="checkbox" />This is demo</li>
-              <li><input type="checkbox" />This is practice</li>
-              <li><input type="checkbox" />This is suck</li>
+              {
+                this.state.todos.map(todo=> 
+                  <li key={todo.id}>
+                    <input type="checkbox" defaultChecked={todo.isComplete}/>
+                    {todo.name}
+                  </li>
+                )
+              }
             </ul>
           </div>
         </div>
