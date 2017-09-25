@@ -14,8 +14,7 @@ const TodoForm = (props) => {
 
 TodoForm.propTypes = {
   currentTodo: PropTypes.string.isRequired,
-  handleInputChange: PropTypes.func.isRequired,
-  hanleSubmit: PropTypes.func.isRequired
+  handleInputChange: PropTypes.func.isRequired
 }
 
 
