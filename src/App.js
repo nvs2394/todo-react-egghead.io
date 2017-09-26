@@ -6,7 +6,8 @@ import './App.css';
  */
 import TodoForm from './components/todo/TodoForm';
 import TodoList from './components/todo/TodoList';
-import { addTodo, generateId, findById, toggleTodo, updateTodo } from './lib/todoHelpers';
+import {Footer} from './components/footer/Footer';
+import { addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo } from './lib/todoHelpers';
 
 class App extends Component {
   constructor(){
@@ -70,6 +71,14 @@ class App extends Component {
     })
   }
 
+  handleRemove = (id, event) => {
+    event.preventDefault();
+    const updatedTodos = removeTodo(id, this.state.todos);
+    this.setState({
+      todos: updatedTodos
+    })
+  }
+
   render() {
     const submitHandler = this.state.currentTodo ? this.hanleSubmit : this.handleEmptySubmit;
 
@@ -89,7 +98,9 @@ class App extends Component {
           <TodoList 
             todos={this.state.todos}
             handleToggle={this.handleToggle}
+            handleRemove={this.handleRemove}
           />
+          <Footer />
         </div>
       </div>
     );

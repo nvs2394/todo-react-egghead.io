@@ -1,4 +1,5 @@
 import uuidv1 from 'uuid/v1';
+import _ from 'lodash';
 
 export const addTodo = (list, item) =>{
   return list.concat(item);
@@ -19,4 +20,12 @@ export const updateTodo = (todo, updated) => {
     updated,
     ...todo.slice(updatedIndex + 1)
   ]
+}
+
+export const removeTodo = (id, list) =>{
+ const removeIndex = list.findIndex(item => item.id === id);
+ return [
+   ...list.slice(0, removeIndex),
+   ...list.slice(removeIndex + 1)
+ ]
 }

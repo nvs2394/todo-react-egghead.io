@@ -11,6 +11,7 @@ const TodoList = (props) => {
               key={todo.id}
               todo={todo}
               handleToggle={props.handleToggle}
+              handleRemove={props.handleRemove}
             />
           )
         }
@@ -20,7 +21,9 @@ const TodoList = (props) => {
 };
 
 TodoList.propTypes = {
-  todo: PropTypes.object.isRequired
+  todo: PropTypes.object.isRequired,
+  handleToggle: PropTypes.func,
+  handleRemove: PropTypes.func
 }
 
 export default TodoList;
