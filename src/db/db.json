@@ -1,31 +1,6 @@
 {
   "todos": [
     {
-      "id": 1,
-      "name": "TFS Financial Corporation",
-      "isComplete": false
-    },
-    {
-      "id": 2,
-      "name": "Fusion Telecommunications International, Inc.",
-      "isComplete": true
-    },
-    {
-      "id": 3,
-      "name": "Fusion Telecommunications International, Inc.",
-      "isComplete": true
-    },
-    {
-      "id": 4,
-      "name": "Fusion Telecommunications International, Inc.",
-      "isComplete": true
-    },
-    {
-      "id": 5,
-      "name": "Controladora Vuela Compania de Aviacion, S.A.B. de C.V.",
-      "isComplete": true
-    },
-    {
       "name": "dasda",
       "isComplete": false,
       "id": "a675ece0-a537-11e7-94f6-1528f1284419"
