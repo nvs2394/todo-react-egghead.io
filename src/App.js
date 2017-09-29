@@ -8,27 +8,22 @@ import TodoForm from './components/todo/TodoForm';
 import TodoList from './components/todo/TodoList';
 import {Footer} from './components/footer/Footer';
 import { addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo , filterTodos } from './lib/todoHelpers';
+import { loadTodos } from './lib/todoAPI';
+
 
 class App extends Component {
   state = {
-    todos: [{
-      "id": 1,
-      "name": "TFS Financial Corporation",
-      "isComplete": false
-        }, {
-      "id": 2,
-      "name": "Fusion Telecommunications International, Inc.",
-      "isComplete": true
-        }, {
-      "id": 3,
-      "name": "Controladora Vuela Compania de Aviacion, S.A.B. de C.V.",
-      "isComplete": true
-    }],
+    todos: [],
     currentTodo: ''
   }
 
   static contextTypes = {
     route: React.PropTypes.string
+  }
+
+  componentDidMount() {
+    loadTodos()
+      .then(todos => this.setState({todos}));
   }
 
   handleInputChange = (event) =>{
