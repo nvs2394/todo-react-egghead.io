@@ -8,7 +8,7 @@ import TodoForm from './components/todo/TodoForm';
 import TodoList from './components/todo/TodoList';
 import {Footer} from './components/footer/Footer';
 import { addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo , filterTodos } from './lib/todoHelpers';
-import { loadTodos } from './lib/todoAPI';
+import { loadTodos, createTodo } from './lib/todoAPI';
 
 
 class App extends Component {
@@ -47,6 +47,9 @@ class App extends Component {
       todos: updatedTodo,
       currentTodo: ''
     });
+
+    createTodo(newTodo)
+      .then(() => console.log('Todo added'));
   }
 
   handleEmptySubmit = (event) =>{
