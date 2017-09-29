@@ -30,6 +30,12 @@ export class Router extends Component {
     linkHandler: React.PropTypes.func
   }
 
+  componentDidMount() {
+    window.onpopstate = () =>{
+      this.setState({route: getCurrentPath()});
+    };
+  }
+
   render(){
     return (
       <div>{this.props.children}</div>
