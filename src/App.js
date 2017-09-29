@@ -8,7 +8,7 @@ import TodoForm from './components/todo/TodoForm';
 import TodoList from './components/todo/TodoList';
 import {Footer} from './components/footer/Footer';
 import { addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo , filterTodos } from './lib/todoHelpers';
-import { loadTodos, createTodo } from './lib/todoAPI';
+import { loadTodos, createTodo, saveTodo } from './lib/todoAPI';
 
 
 class App extends Component {
@@ -62,12 +62,14 @@ class App extends Component {
 
   handleToggle = (id) =>{
     const todo = findById(id, this.state.todos);
-    const toggled = toggleTodo(todo);
-    const  updatedTodos = updateTodo(this.state.todos, toggled);
-    
-    this.setState({
-      todos: updatedTodos
-    })
+    saveTodo(todo)
+      .then((todo) => {
+        const updatedTodos = updateTodo(this.state.todos, todo);
+        this.setState({
+          todos: updatedTodos
+        });
+        this.showTempMessage('Todo updated');
+      });
   }
 
   handleRemove = (id, event) => {
@@ -79,7 +81,7 @@ class App extends Component {
   }
 
   showTempMessage = (message) => {
-    this.setState({message: 'Todo added'});
+    this.setState({message});
     setTimeout(() =>{
       this.setState({message: ''});
     }, 2000);
