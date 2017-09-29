@@ -7,27 +7,28 @@ import './App.css';
 import TodoForm from './components/todo/TodoForm';
 import TodoList from './components/todo/TodoList';
 import {Footer} from './components/footer/Footer';
-import { addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo } from './lib/todoHelpers';
+import { addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo , filterTodos } from './lib/todoHelpers';
 
 class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      todos: [{
-        "id": 1,
-        "name": "TFS Financial Corporation",
-        "isComplete": false
-      }, {
-        "id": 2,
-        "name": "Fusion Telecommunications International, Inc.",
-        "isComplete": true
-      }, {
-        "id": 3,
-        "name": "Controladora Vuela Compania de Aviacion, S.A.B. de C.V.",
-        "isComplete": true
-      }],
-      currentTodo: ''
-    }
+  state = {
+    todos: [{
+      "id": 1,
+      "name": "TFS Financial Corporation",
+      "isComplete": false
+        }, {
+      "id": 2,
+      "name": "Fusion Telecommunications International, Inc.",
+      "isComplete": true
+        }, {
+      "id": 3,
+      "name": "Controladora Vuela Compania de Aviacion, S.A.B. de C.V.",
+      "isComplete": true
+    }],
+    currentTodo: ''
+  }
+
+  static contextTypes = {
+    route: React.PropTypes.string
   }
 
   handleInputChange = (event) =>{
@@ -81,6 +82,7 @@ class App extends Component {
 
   render() {
     const submitHandler = this.state.currentTodo ? this.hanleSubmit : this.handleEmptySubmit;
+    const displayTodos = filterTodos(this.state.todos,this.context.route);
 
     return (
       <div className="App">
@@ -96,7 +98,7 @@ class App extends Component {
             hanleSubmit={submitHandler}
           />
           <TodoList 
-            todos={this.state.todos}
+            todos={displayTodos}
             handleToggle={this.handleToggle}
             handleRemove={this.handleRemove}
           />
