@@ -1,25 +1,23 @@
-import React, { PropTypes } from 'react';
-import { partial } from '../../lib/utils';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const TodoItem = (props) => {
-  const { todo } = props; 
-  
-  const handleToggle = partial(props.handleToggle, todo.id)
-  const handleRemove = partial(props.handleRemove, todo.id)
+  const { onClick, todo : { id, completed, text} } = props;
 
   return(
-    <li key={todo.id}>
-      <span className='delete-item'><a href="#" onClick={handleRemove}>X</a></span>
+    <li key={id}>
+      <span className='delete-item'><a href="#">X</a></span>
       <input 
         type="checkbox" 
-        checked={todo.isComplete}
-        onChange={ handleToggle }/>{todo.name}
+        checked={completed}
+        onChange={ onClick }/>{text}
     </li>
   )
 };
 
 TodoItem.propTypes = {
-  todo: PropTypes.object.isRequired
+  todo: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired
 }
 
 export default TodoItem;

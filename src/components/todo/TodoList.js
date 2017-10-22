@@ -1,7 +1,9 @@
-import React, { PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import TodoItem from './TodoItem';
 
 const TodoList = (props) => {
+  const { onTodoClick } = props;
   return(
     <div className="Todo-List">
       <ul>
@@ -10,8 +12,7 @@ const TodoList = (props) => {
             <TodoItem 
               key={todo.id}
               todo={todo}
-              handleToggle={props.handleToggle}
-              handleRemove={props.handleRemove}
+              onClick={() => onTodoClick(todo.id)}
             />
           )
         }
@@ -21,9 +22,19 @@ const TodoList = (props) => {
 };
 
 TodoList.propTypes = {
-  todo: PropTypes.object.isRequired,
-  handleToggle: PropTypes.func,
-  handleRemove: PropTypes.func
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+      completed: PropTypes.bool.isRequired
+    })
+  ).isRequired,
+  onTodoClick: PropTypes.func.isRequired
+}
+
+TodoList.defaultProps = {
+  todos: [{}],
+  onTodoClick: () => {}
 }
 
 export default TodoList;
