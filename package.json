@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "lodash": "^4.17.4",
+    "moment": "^2.19.1",
+    "node-uuid": "^1.4.8",
     "prop-types": "^15.6.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
