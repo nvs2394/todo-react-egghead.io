@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TodoItem from './TodoItem';
 
 const TodoList = (props) => {
-  const { onTodoClick } = props;
+  const { onTodoClick, onTodoRemove } = props;
   return(
     <div className="Todo-List">
       <ul>
@@ -13,6 +13,7 @@ const TodoList = (props) => {
               key={todo.id}
               todo={todo}
               onClick={() => onTodoClick(todo.id)}
+              removeTodo={() => onTodoRemove(todo.id)}
             />
           )
         }
@@ -29,12 +30,14 @@ TodoList.propTypes = {
       completed: PropTypes.bool.isRequired
     })
   ).isRequired,
-  onTodoClick: PropTypes.func.isRequired
+  onTodoClick: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired
 }
 
 TodoList.defaultProps = {
   todos: [{}],
-  onTodoClick: () => {}
+  onTodoClick: () => {},
+  removeTodo: () => {}
 }
 
 export default TodoList;
