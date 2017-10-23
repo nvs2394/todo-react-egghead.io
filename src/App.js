@@ -12,7 +12,7 @@ import VisibleTodoList from './containers/VisibleTodoList'
 class App extends Component {
   
   render() {
-
+    const { params } = this.props.match;
     return (
       <div className="App">
         <div className="App-header">
@@ -21,7 +21,9 @@ class App extends Component {
         </div>
         <div className="Todo-App">
           <AddTodo />
-          <VisibleTodoList />
+          <VisibleTodoList 
+            filter={params.filter || 'all'}
+          />
           <Footer />
         </div>
       </div>
